@@ -1,6 +1,5 @@
 # Binaries for programs and plugins
 main
-qbe
 *.exe
 *.exe~
 *.so
@@ -12,6 +11,10 @@ bin/
 
 # Ignore docs (for now)
 docs/
+
+# More sanity for me
+qbe
+!qbe/
 
 # Ignore common editor/system specific metadata
 .DS_Store
