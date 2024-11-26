@@ -32,6 +32,7 @@ pub fn (t Type) str() string {
 	}
 }
 
+// Returns the closest base type.
 pub fn (t Type) into_base() Type {
 	return match t {
 		.byte, .signedbyte, .unsignedbyte, .halfword, .unsignedhalfword { .word }

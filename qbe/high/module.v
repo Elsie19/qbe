@@ -18,12 +18,14 @@ pub fn (m Module) str() string {
 	return ret_str.trim_indent()
 }
 
+// Adds a function to the module, returning a reference to it for later modification.
 pub fn (mut m Module) add_function(func Function) &Function {
 	m.functions << func
 	mut last := m.functions.last()
 	return &last
 }
 
+// Adds a data definition to the module.
 pub fn (mut m Module) add_data(data DataDef) &DataDef {
 	m.data << data
 	mut last := m.data.last()

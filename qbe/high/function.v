@@ -33,6 +33,7 @@ pub fn (f Function) str() string {
 	return ret_str
 }
 
+// Adds a new empty block with a specified label and returns a reference to it.
 pub fn (mut f Function) add_block(label string) &Block {
 	block := Block{label, []}
 	f.blocks << block
@@ -56,6 +57,7 @@ pub fn (mut f Function) add_instr(instr Instr) {
 	f.blocks[f.blocks.len - 1].add_instr(instr)
 }
 
+// Instantiates an empty function and returns it.
 pub fn Function.new(linkage Linkage, name string, arguments []Param, return_ty ?Type) Function {
 	return Function{linkage, name, arguments, return_ty, []}
 }

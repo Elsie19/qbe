@@ -3,6 +3,14 @@ module low
 // Data definition item.
 pub type DataItem = DSymbol | DStr | DConst
 
+pub fn (d DataItem) str() string {
+	return match d {
+		DSymbol { d.str() }
+		DStr { d.str() }
+		DConst { d.str() }
+	}
+}
+
 // Symbol.
 pub struct DSymbol {
 pub:

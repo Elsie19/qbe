@@ -25,10 +25,12 @@ pub fn (l Linkage) str() string {
 	return ret_str
 }
 
+// Returns the default configuration for private linkage.
 pub fn Linkage.private() Linkage {
 	return Linkage{false, none, none}
 }
 
+// Returns the default configuration for public linkage.
 pub fn Linkage.public() Linkage {
 	return Linkage{true, none, none}
 }

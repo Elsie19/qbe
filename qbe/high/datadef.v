@@ -4,7 +4,9 @@ import qbe.low { DataItem, Type }
 
 pub struct DataDefItem {
 pub:
+	// Type
 	type Type
+	// Contents
 	item DataItem
 }
 
