@@ -1,15 +1,17 @@
-import qbe.low { Add, Call, Const, DConst, DStr, DataItem, Global, Instr, Param, Ret, Temporary, Type, Value }
+import qbe.low { Add, Call, DConst, DStr, DataItem, Instr, Param, Ret, Type, const, global, temporary }
 import qbe.high { DataDef, DataDefItem, Function, Linkage, Module }
 
 fn generate_add_func(mut le_module Module) {
 	mut func := Function.new(Linkage.private(), 'add', [
-		Param{Type.word, Value(Temporary{'a'})},
-		Param{Type.word, Value(Temporary{'b'})},
+		Param{Type.word, temporary(name: 'a')},
+		Param{Type.word, temporary(name: 'b')},
 	], Type.word)
 
 	func.add_block('start')
-	func.assign_instr(Value(Temporary{'c'}), Type.word, Instr(Add{Value(Temporary{'a'}), Value(Temporary{'b'})}))
-	func.add_instr(Instr(Ret{Value(Temporary{'c'})}))
+	func.assign_instr(temporary(name: 'c'), Type.word, Instr(Add{temporary(name: 'a'), temporary(
+		name: 'b'
+	)}))
+	func.add_instr(Instr(Ret{temporary(name: 'c')}))
 
 	le_module.add_function(func)
 }
@@ -18,17 +20,17 @@ fn generate_main_func(mut le_module Module) {
 	mut func := Function.new(Linkage.public(), 'main', [], Type.word)
 
 	func.add_block('start')
-	func.assign_instr(Value(Temporary{'r'}), Type.word, Instr(Call{'add', [
-		Param{Type.word, Value(Const{1})},
-		Param{Type.word, Value(Const{1})},
+	func.assign_instr(temporary(name: 'r'), Type.word, Instr(Call{'add', [
+		Param{Type.word, const(val: 1)},
+		Param{Type.word, const(val: 1)},
 	]}))
 
 	func.add_instr(Instr(Call{'printf', [
-		Param{Type.long, Value(Global{'fmt'})},
+		Param{Type.long, global(name: 'fmt')},
 		Param{Type.variadic, none},
-		Param{Type.word, Value(Temporary{'r'})},
+		Param{Type.word, temporary(name: 'r')},
 	]}))
-	func.add_instr(Instr(Ret{Value(Const{0})}))
+	func.add_instr(Instr(Ret{const(val: 0)}))
 
 	le_module.add_function(func)
 }

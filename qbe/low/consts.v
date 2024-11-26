@@ -8,6 +8,8 @@ pub struct Temporary {
 pub:
 	// The variable name
 	v string @[required]
+	// Thread-local storage
+	t bool
 }
 
 // Global variable type.
@@ -15,6 +17,8 @@ pub struct Global {
 pub:
 	// The variable name
 	v string @[required]
+	// Thread-local storage
+	t bool
 }
 
 // Const variable type.
@@ -22,6 +26,8 @@ pub struct Const {
 pub:
 	// The constant value
 	v u64 @[required]
+	// Thread-local storage
+	t bool
 }
 
 // Print `Value` as a QBE IR variable. This should correspond roughly with
@@ -43,13 +49,64 @@ pub fn (v Value) str() string {
 }
 
 pub fn (t Temporary) str() string {
-	return '%${t.v}'
+	return if t.t {
+		'thread %${t.v}'
+	} else {
+		'%${t.v}'
+	}
 }
 
 pub fn (g Global) str() string {
-	return '\$${g.v}'
+	return if g.t {
+		'thread \$${g.v}'
+	} else {
+		'\$${g.v}'
+	}
 }
 
 pub fn (c Const) str() string {
-	return '${c.v}'
+	return if c.t {
+		'thread ${c.v}'
+	} else {
+		'${c.v}'
+	}
+}
+
+@[params]
+pub struct GlobalTempConfig {
+pub:
+	// Variable name
+	name string
+	// Threaded status
+	threaded bool = false
+}
+
+@[params]
+pub struct ConstConfig {
+pub:
+	// Constant value
+	val u64
+	// Threaded status
+	threaded bool = false
+}
+
+pub fn temporary(tmp GlobalTempConfig) Value {
+	return Value(Temporary{
+		v: tmp.name
+		t: tmp.threaded
+	})
+}
+
+pub fn global(tmp GlobalTempConfig) Value {
+	return Value(Global{
+		v: tmp.name
+		t: tmp.threaded
+	})
+}
+
+pub fn const(tmp ConstConfig) Value {
+	return Value(Const{
+		v: tmp.val
+		t: tmp.threaded
+	})
 }
