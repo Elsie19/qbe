@@ -3,12 +3,19 @@ module low
 // Instructions.
 pub type Instr = Add
 	| Sub
-	| Mul
 	| Div
+	| Mul
+	| Neg
+	| Udiv
 	| Rem
+	| Urem
 	| Cmp
-	| And
 	| Or
+	| Xor
+	| And
+	| Sar
+	| Shr
+	| Shl
 	| Copy
 	| Ret
 	| Jnz
@@ -30,12 +37,19 @@ pub fn (i Instr) str() string {
 	return match i {
 		Add { i.str() }
 		Sub { i.str() }
-		Mul { i.str() }
 		Div { i.str() }
+		Mul { i.str() }
+		Neg { i.str() }
+		Udiv { i.str() }
 		Rem { i.str() }
+		Urem { i.str() }
 		Cmp { i.str() }
-		And { i.str() }
 		Or { i.str() }
+		Xor { i.str() }
+		And { i.str() }
+		Sar { i.str() }
+		Shr { i.str() }
+		Shl { i.str() }
 		Copy { i.str() }
 		Ret { i.str() }
 		Jnz { i.str() }
@@ -94,6 +108,30 @@ pub fn (m Mul) str() string {
 	return 'mul ${m.to}, ${m.from}'
 }
 
+// Two's complement negative value.
+pub struct Neg {
+pub:
+	// Value
+	v Value
+}
+
+pub fn (n Neg) str() string {
+	return 'neg ${n.v}'
+}
+
+// Unsigned integral division.
+pub struct Udiv {
+pub:
+	// First value
+	to Value
+	// Second value
+	from Value
+}
+
+pub fn (u Udiv) str() string {
+	return 'udiv ${u.to}, ${u.from}'
+}
+
 // Divide values of two temporaries.
 pub struct Div {
 pub:
@@ -105,6 +143,19 @@ pub:
 
 pub fn (d Div) str() string {
 	return 'div ${d.to}, ${d.from}'
+}
+
+// Unsigned remainder value of two temporaries from division.
+pub struct Urem {
+pub:
+	// Value to be divided
+	to Value
+	// Value to be used to divide
+	from Value
+}
+
+pub fn (u Urem) str() string {
+	return 'urem ${u.to}, ${u.from}'
 }
 
 // Remainder value of two temporaries from division.
@@ -161,6 +212,58 @@ pub:
 
 pub fn (o Or) str() string {
 	return 'or ${o.x}, ${o.y}'
+}
+
+// Performs bitwise XOR.
+pub struct Xor {
+pub:
+	// First value
+	x Value
+	// Second value
+	y Value
+}
+
+pub fn (x Xor) str() string {
+	return 'xor ${x.x}, ${x.y}'
+}
+
+// Shift right preserving sign of value.
+pub struct Sar {
+pub:
+	// Shift value `x`
+	x Value
+	// By amount of `y`
+	y Value
+}
+
+pub fn (s Sar) str() string {
+	return 'sar ${s.x}, ${s.y}'
+}
+
+// Shift right filling newly freed bits with zeros.
+pub struct Shr {
+pub:
+	// Shift value `x`
+	x Value
+	// By amount of `y`
+	y Value
+}
+
+pub fn (s Shr) str() string {
+	return 'shr ${s.x}, ${s.y}'
+}
+
+// Shift left.
+pub struct Shl {
+pub:
+	// Shift value `x`
+	x Value
+	// By amount of `y`
+	y Value
+}
+
+pub fn (s Shl) str() string {
+	return 'shl ${s.x}, ${s.y}'
 }
 
 // Copies temporary or literal.
