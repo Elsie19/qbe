@@ -1,4 +1,4 @@
-module qbe
+module low
 
 // Wrapper for constants and variables.
 pub type Value = Temporary | Global | Const

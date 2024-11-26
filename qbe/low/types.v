@@ -1,4 +1,4 @@
-module qbe
+module low
 
 // Type sets the length of a type.
 pub enum Type {

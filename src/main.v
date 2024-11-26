@@ -1,7 +1,7 @@
-import qbe { Value, Temporary }
+import qbe.low { Value, Temporary }
 
 fn main() {
-	foo := Value(Temporary{"bar"})
+	foo := Value(Temporary{"borg"})
 
 	println(foo)
 }
