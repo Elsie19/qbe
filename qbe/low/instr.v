@@ -1,5 +1,8 @@
 module low
 
+// Instructions.
+pub type Instr = Add | Sub | Mul | Div | Rem | Cmp | And | Or | Copy | Ret | Jnz | Jmp | Call | Alloc4 | Alloc8 | Alloc16 | Store | Load | Blit
+
 // Add values of two temporaries.
 pub struct Add {
 pub:
@@ -184,4 +187,81 @@ pub:
 
 pub fn (c Call) str() string {
 	return 'call \$${c.f}(${c.a.map(it.str()).join(', ')})'
+}
+
+// Allocate 4-byte aligned area on the stack.
+pub struct Alloc4 {
+pub:
+	// Size
+	s u32
+}
+
+pub fn (a Alloc4) str() string {
+	return 'alloc4 ${a.s}'
+}
+
+// Allocate 8-byte aligned area on the stack.
+pub struct Alloc8 {
+pub:
+	// Size
+	s u64
+}
+
+pub fn (a Alloc8) str() string {
+	return 'alloc8 ${a.s}'
+}
+
+// Allocate 16-byte aligned area on the stack.
+pub struct Alloc16 {
+pub:
+	// Size
+	// TODO: Make this u128 whenever V releases it.
+	s u64
+}
+
+pub fn (a Alloc16) str() string {
+	return 'alloc16 ${a.s}'
+}
+
+// Store a value into memory pointed to by destination.
+pub struct Store {
+pub:
+	// Type
+	t Type
+	// Destination
+	d Value
+	// Value
+	v Value
+}
+
+pub fn (s Store) str() string {
+	return 'store${s.t} ${s.d}, ${s.v}'
+}
+
+// Load a value from memory.
+pub struct Load {
+pub:
+	// Type
+	t Type
+	// Source
+	s Value
+}
+
+pub fn (l Load) str() string {
+	return 'load${l.t} ${l.s}'
+}
+
+// Copy `n` bytes from source address to the destination address.
+pub struct Blit {
+pub:
+	// Source
+	s Value
+	// Destination
+	d Value
+	// Bytes
+	n u64
+}
+
+pub fn (b Blit) str() string {
+	return 'blit ${b.s}, ${b.d}, ${b.n}'
 }
