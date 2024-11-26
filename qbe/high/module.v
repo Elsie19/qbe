@@ -31,3 +31,10 @@ pub fn (mut m Module) add_data(data DataDef) &DataDef {
 	mut last := m.data.last()
 	return &last
 }
+
+// Adds a type definition to the module.
+pub fn (mut m Module) add_type(type TypeDef) &TypeDef {
+	m.types << type
+	mut last := m.types.last()
+	return &last
+}
