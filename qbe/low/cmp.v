@@ -2,18 +2,23 @@ module low
 
 // Compare for operations.
 pub enum Cmpr {
-	// x < y
-	slt
-	// x <= y
-	sle
-	// x > y
-	sgt
-	// x >= y
-	sge
-	// x == y
+	// Integer comparisons
 	eq
-	// x != y
 	ne
+	sle
+	slt
+	sge
+	sgt
+	ule
+	uge
+	ugt
+	// Floating-point comparisons
+	le
+	lt
+	ge
+	gt
+	o
+	uo
 }
 
 pub fn (c Cmpr) str() string {
@@ -24,5 +29,11 @@ pub fn (c Cmpr) str() string {
 		.sge { 'sge' }
 		.eq { 'eq' }
 		.ne { 'ne' }
+		.le { 'le' }
+		.lt { 'lt' }
+		.ge { 'ge' }
+		.gt { 'gt' }
+		.o { 'o' }
+		.uo { 'uo' }
 	}
 }
