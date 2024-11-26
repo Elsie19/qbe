@@ -20,6 +20,9 @@ pub type Instr = Add
 	| Store
 	| Load
 	| Blit
+	| Phi
+	| DbgFile
+	| DbgLoc
 
 pub fn (i Instr) str() string {
 	return match i {
@@ -42,6 +45,9 @@ pub fn (i Instr) str() string {
 		Store { i.str() }
 		Load { i.str() }
 		Blit { i.str() }
+		Phi { i.str() }
+		DbgFile { i.str() }
+		DbgLoc { i.str() }
 	}
 }
 
@@ -306,4 +312,55 @@ pub:
 
 pub fn (b Blit) str() string {
 	return 'blit ${b.s}, ${b.d}, ${b.n}'
+}
+
+pub struct PhiParam {
+pub:
+	// Label to jump to
+	l string
+	// Value to check
+	v Value
+}
+
+pub fn (p PhiParam) str() string {
+	return '@${p.l} ${p.v}'
+}
+
+// Phi instruction.
+pub struct Phi {
+pub:
+	// Variants to check
+	inst []PhiParam
+}
+
+pub fn (p Phi) str() string {
+	return 'phi ${p.inst.map(it.str()).join(', ')}'
+}
+
+// Current source file symbol for debugging.
+pub struct DbgFile {
+pub:
+	// File name
+	f string
+}
+
+pub fn (d DbgFile) str() string {
+	return "dbgfile \"${d.f}\""
+}
+
+// Current line and column in source file.
+pub struct DbgLoc {
+pub:
+	// Line
+	l u64
+	// Column
+	c ?u64
+}
+
+pub fn (d DbgLoc) str() string {
+	return if col := d.c {
+		'dbgloc ${d.l}, ${col}'
+	} else {
+		'dbgloc ${d.l}'
+	}
 }
