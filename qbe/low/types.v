@@ -17,7 +17,8 @@ pub enum Type {
 	unsignedhalfword
 
 	// Misc
-	zero // Only for use in DataDef
+	zero     // Only for use in DataDef
+	variadic // Used in functions
 }
 
 pub fn (t Type) str() string {
@@ -32,7 +33,9 @@ pub fn (t Type) str() string {
 		.halfword { 'h' }
 		.signedhalfword { 'sh' }
 		.unsignedhalfword { 'uh' }
+		// Misc
 		.zero { 'z' }
+		.variadic { '...' }
 	}
 }
 

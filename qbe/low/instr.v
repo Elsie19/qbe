@@ -23,6 +23,8 @@ pub type Instr = Add
 	| Phi
 	| DbgFile
 	| DbgLoc
+	| VaStart
+	| VaArg
 
 pub fn (i Instr) str() string {
 	return match i {
@@ -48,6 +50,8 @@ pub fn (i Instr) str() string {
 		Phi { i.str() }
 		DbgFile { i.str() }
 		DbgLoc { i.str() }
+		VaStart { i.str() }
+		VaArg { i.str() }
 	}
 }
 
@@ -217,11 +221,16 @@ pub:
 	// The type
 	t Type
 	// The value
-	v Value
+	v ?Value
 }
 
 pub fn (p Param) str() string {
-	return '${p.t} ${p.v}'
+	return if value := p.v {
+		'${p.t} ${value}'
+	} else {
+		// Really this should only appear for variadic arguments
+		'${p.t}'
+	}
 }
 
 // Call a function.
@@ -363,4 +372,26 @@ pub fn (d DbgLoc) str() string {
 	} else {
 		'dbgloc ${d.l}'
 	}
+}
+
+// Initialize a variable argument list.
+pub struct VaStart {
+pub:
+	// Pointer to list of arguments
+	p Value
+}
+
+pub fn (v VaStart) str() string {
+	return 'vastart ${v.p}'
+}
+
+// Fetch next argument argument from variable list.
+pub struct VaArg {
+pub:
+	// Pointer to list of arguments
+	p Value
+}
+
+pub fn (v VaArg) str() string {
+	return 'vaarg ${v.p}'
 }

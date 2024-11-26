@@ -12,7 +12,7 @@ pub:
 }
 
 pub fn (l Linkage) str() string {
-	mut ret_str := 'export '
+	mut ret_str := if l.exported { 'export ' } else { '' }
 
 	if section := l.section {
 		ret_str += "section \"${section}\""

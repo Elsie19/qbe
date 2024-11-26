@@ -25,6 +25,7 @@ fn generate_main_func(mut le_module Module) {
 
 	func.add_instr(Instr(Call{'printf', [
 		Param{Type.long, Value(Global{'fmt'})},
+		Param{Type.variadic, none},
 		Param{Type.word, Value(Temporary{'r'})},
 	]}))
 	func.add_instr(Instr(Ret{Value(Const{0})}))
