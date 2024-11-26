@@ -21,11 +21,15 @@ pub type Instr = Add
 	| Jnz
 	| Jmp
 	| Call
+	| Cast
 	| Alloc4
 	| Alloc8
 	| Alloc16
 	| Store
 	| Load
+	| Ext
+	| Trunc
+	| To
 	| Blit
 	| Phi
 	| DbgFile
@@ -55,6 +59,7 @@ pub fn (i Instr) str() string {
 		Jnz { i.str() }
 		Jmp { i.str() }
 		Call { i.str() }
+		Cast { i.str() }
 		Alloc4 { i.str() }
 		Alloc8 { i.str() }
 		Alloc16 { i.str() }
@@ -66,6 +71,9 @@ pub fn (i Instr) str() string {
 		DbgLoc { i.str() }
 		VaStart { i.str() }
 		VaArg { i.str() }
+		Ext { i.str() }
+		Trunc { i.str() }
+		To { i.str() }
 	}
 }
 
@@ -349,6 +357,17 @@ pub fn (c Call) str() string {
 	return 'call \$${c.f}(${c.a.map(it.str()).join(', ')})'
 }
 
+// Make bitwise operations on the representation of floating point numbers.
+pub struct Cast {
+pub:
+	// Value
+	v Value
+}
+
+pub fn (c Cast) str() string {
+	return 'cast ${c.v}'
+}
+
 // Allocate 4-byte aligned area on the stack.
 pub struct Alloc4 {
 pub:
@@ -409,6 +428,47 @@ pub:
 
 pub fn (l Load) str() string {
 	return 'load${l.t} ${l.s}'
+}
+
+// Extend precision of temporaries.
+pub struct Ext {
+pub:
+	// Type
+	t Type
+	// Variable
+	v Value
+}
+
+pub fn (e Ext) str() string {
+	return 'ext${e.t} ${e.v}'
+}
+
+// Truncate.
+pub struct Trunc {
+pub:
+	// Type
+	t Type
+	// Variable
+	v Value
+}
+
+pub fn (t Trunc) str() string {
+	return 'trunc${t.t} ${t.v}'
+}
+
+// Convert.
+pub struct To {
+pub:
+	// From
+	from Type
+	// To
+	to Type
+	// Variable
+	v Value
+}
+
+pub fn (t To) str() string {
+	return '${t.from}to${t.to} ${t.v}'
 }
 
 // Copy `n` bytes from source address to the destination address.

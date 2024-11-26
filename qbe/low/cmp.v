@@ -33,6 +33,9 @@ pub fn (c Cmpr) str() string {
 		.lt { 'lt' }
 		.ge { 'ge' }
 		.gt { 'gt' }
+		.ule { 'ule' }
+		.uge { 'uge' }
+		.ugt { 'ugt' }
 		.o { 'o' }
 		.uo { 'uo' }
 	}
