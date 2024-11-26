@@ -23,7 +23,7 @@ pub fn (f Function) str() string {
 		ret_str += ' ${ty}'
 	}
 
-	ret_str += ' ${f.name}(${f.arguments.map(it.str()).join(', ')}) {\n'
+	ret_str += ' \$${f.name}(${f.arguments.map(it.str()).join(', ')}) {\n'
 
 	for blk in f.blocks {
 		ret_str += '${blk}\n'

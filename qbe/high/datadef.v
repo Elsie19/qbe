@@ -28,7 +28,7 @@ pub:
 }
 
 pub fn (d DataDef) str() string {
-	mut ret_str := '${d.linkage}data ${d.name} = '
+	mut ret_str := '${d.linkage}data \$${d.name} = '
 
 	if align := d.align {
 		ret_str += 'align ${align} '
