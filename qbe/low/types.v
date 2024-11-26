@@ -19,6 +19,7 @@ pub enum Type {
 	// Misc
 	zero     // Only for use in DataDef
 	variadic // Used in functions
+	env      // Used to pass environment pointer of closures. If used, the variable must be `%e`
 }
 
 pub fn (t Type) str() string {
@@ -36,6 +37,7 @@ pub fn (t Type) str() string {
 		// Misc
 		.zero { 'z' }
 		.variadic { '...' }
+		.env { 'env' }
 	}
 }
 
