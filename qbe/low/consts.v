@@ -78,7 +78,7 @@ pub:
 	// Variable name
 	name string
 	// Threaded status
-	threaded bool = false
+	thread bool
 }
 
 @[params]
@@ -87,26 +87,26 @@ pub:
 	// Constant value
 	val u64
 	// Threaded status
-	threaded bool = false
+	thread bool
 }
 
 pub fn temporary(tmp GlobalTempConfig) Value {
 	return Value(Temporary{
 		v: tmp.name
-		t: tmp.threaded
+		t: tmp.thread
 	})
 }
 
 pub fn global(tmp GlobalTempConfig) Value {
 	return Value(Global{
 		v: tmp.name
-		t: tmp.threaded
+		t: tmp.thread
 	})
 }
 
-pub fn const(tmp ConstConfig) Value {
+pub fn constant(tmp ConstConfig) Value {
 	return Value(Const{
 		v: tmp.val
-		t: tmp.threaded
+		t: tmp.thread
 	})
 }

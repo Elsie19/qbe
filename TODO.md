@@ -1,6 +1,5 @@
 ## Todo list to implement all QBE features
 
-* thread local symbol (https://c9x.me/compile/doc/il.html#Constants-and-Vals)
 * Aggregate types
 * Environmen paremeter `env %e`
 * Rest of Arithmetic and Bits section
