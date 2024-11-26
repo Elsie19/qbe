@@ -5,9 +5,17 @@ pub type Statement = Assign | Volatile
 
 // Assign to value.
 pub struct Assign {
+pub:
 	tmp Value
-	t Type
-	i Instr
+	t   Type
+	i   Instr
+}
+
+pub fn (s Statement) str() string {
+	return match s {
+		Assign { s.str() }
+		Volatile { s.str() }
+	}
 }
 
 pub fn (a Assign) str() string {
@@ -16,6 +24,7 @@ pub fn (a Assign) str() string {
 
 // Call value without assigning.
 pub struct Volatile {
+pub:
 	i Instr
 }
 

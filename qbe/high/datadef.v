@@ -1,9 +1,11 @@
 module high
 
+import qbe.low { DataItem, Type }
+
 pub struct DataDefItem {
 pub:
 	type Type
-	item DateItem
+	item DataItem
 }
 
 pub fn (d DataDefItem) str() string {
@@ -30,5 +32,7 @@ pub fn (d DataDef) str() string {
 		ret_str += 'align ${align} '
 	}
 
-	ret_str += '\{\{ ${t.items.map(it.str()).join(", ")} \}\}'
+	ret_str += '{ ${d.items.map(it.str()).join(', ')} }'
+
+	return ret_str
 }

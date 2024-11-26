@@ -15,10 +15,20 @@ pub fn (l Linkage) str() string {
 	mut ret_str := 'export '
 
 	if section := l.section {
-		ret_str += 'section \"${section}\"'
+		ret_str += "section \"${section}\""
 		if secflags := l.secflags {
-			ret_str += ' \"${secflags}\"'
+			ret_str += " \"${secflags}\""
 		}
 		ret_str += ' '
 	}
+
+	return ret_str
+}
+
+pub fn Linkage.private() Linkage {
+	return Linkage{false, none, none}
+}
+
+pub fn Linkage.public() Linkage {
+	return Linkage{true, none, none}
 }

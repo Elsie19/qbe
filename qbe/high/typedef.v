@@ -1,8 +1,10 @@
 module high
 
+import qbe.low { Type }
+
 // Wrapper for `TypeDef.items`.
 pub struct Items {
-	type Type
+	type  Type
 	count usize
 }
 
@@ -26,10 +28,12 @@ pub:
 }
 
 pub fn (t TypeDef) str() string {
-	mut ret_str := "type :${t.name} = "
+	mut ret_str := 'type :${t.name} = '
 	if align := t.align {
-		ret_str += "align ${align} "
+		ret_str += 'align ${align} '
 	}
 
-	ret_str += '\{\{ ${t.items.map(it.str()).join(", ")} \}\}'
+	ret_str += '\{\{ ${t.items.map(it.str()).join(', ')} \}\}'
+
+	return ret_str
 }

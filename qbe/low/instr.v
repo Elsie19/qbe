@@ -1,7 +1,49 @@
 module low
 
 // Instructions.
-pub type Instr = Add | Sub | Mul | Div | Rem | Cmp | And | Or | Copy | Ret | Jnz | Jmp | Call | Alloc4 | Alloc8 | Alloc16 | Store | Load | Blit
+pub type Instr = Add
+	| Sub
+	| Mul
+	| Div
+	| Rem
+	| Cmp
+	| And
+	| Or
+	| Copy
+	| Ret
+	| Jnz
+	| Jmp
+	| Call
+	| Alloc4
+	| Alloc8
+	| Alloc16
+	| Store
+	| Load
+	| Blit
+
+pub fn (i Instr) str() string {
+	return match i {
+		Add { i.str() }
+		Sub { i.str() }
+		Mul { i.str() }
+		Div { i.str() }
+		Rem { i.str() }
+		Cmp { i.str() }
+		And { i.str() }
+		Or { i.str() }
+		Copy { i.str() }
+		Ret { i.str() }
+		Jnz { i.str() }
+		Jmp { i.str() }
+		Call { i.str() }
+		Alloc4 { i.str() }
+		Alloc8 { i.str() }
+		Alloc16 { i.str() }
+		Store { i.str() }
+		Load { i.str() }
+		Blit { i.str() }
+	}
+}
 
 // Add values of two temporaries.
 pub struct Add {

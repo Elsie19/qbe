@@ -28,7 +28,7 @@ pub:
 }
 
 pub fn (d DStr) str() string {
-	return '\"${d.string}\"'
+	return "\"${d.string}\""
 }
 
 // Const
