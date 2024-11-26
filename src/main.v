@@ -1,8 +1,7 @@
-import qbe { Type }
+import qbe { Value, Temporary }
 
 fn main() {
-	bar := Type.word
+	foo := Value(Temporary{"bar"})
 
-	println(bar)
-	println(Type.word)
+	println(foo)
 }

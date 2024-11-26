@@ -1,7 +1,5 @@
 module qbe
 
-// qbe is a library to generate QBE IR using Vlang data structures.
-
 // Type sets the length of a type.
 pub enum Type {
 	// 32-bit integer
@@ -30,7 +28,6 @@ pub enum Type {
 	doublehalf
 }
 
-// String representation of enum values.
 pub fn (t Type) str() string {
 	return match t {
 		.word { 'w' }
