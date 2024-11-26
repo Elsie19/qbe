@@ -34,3 +34,13 @@ pub fn Linkage.private() Linkage {
 pub fn Linkage.public() Linkage {
 	return Linkage{true, none, none}
 }
+
+// Returns the configuration for private linkage with a provided section.
+pub fn Linkage.private_with_section(section string) Linkage {
+	return Linkage{false, section, none}
+}
+
+// Returns the configuration for public linkage with a provided section.
+pub fn Linkage.public_with_section(section string) Linkage {
+	return Linkage{true, section, none}
+}
