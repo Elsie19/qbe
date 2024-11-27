@@ -1,4 +1,4 @@
-import qbe.low { Add, Call, DataItem, Instr, Param, Ret, Type, constant, global, temporary, dconst, dstr }
+import qbe.low { Add, Call, Instr, Param, Ret, Type, constant, dconst, dstr, global, temporary }
 import qbe.high { DataDef, DataDefItem, Function, Linkage, Module }
 
 fn generate_add_func(mut le_module Module) {

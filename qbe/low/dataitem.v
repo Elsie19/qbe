@@ -55,22 +55,22 @@ pub fn (d DConst) str() string {
 
 // `DataItem` wrapped generator for `DConst`.
 pub fn dconst(dc DConst) DataItem {
-	return DataItem(DConst {
+	return DataItem(DConst{
 		val: dc.val
 	})
 }
 
 // `DataItem` wrapped generator for `DStr`.
 pub fn dstr(ds DStr) DataItem {
-	return DataItem(DStr {
+	return DataItem(DStr{
 		string: ds.string
 	})
 }
 
 // `DataItem` wrapped generator for `DSymbol`.
 pub fn dsymbol(ds DSymbol) DataItem {
-	return DataItem(DSymbol {
-		name: ds.name
+	return DataItem(DSymbol{
+		name:   ds.name
 		offset: ds.offset
 	})
 }
