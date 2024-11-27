@@ -1,4 +1,4 @@
-import qbe.low { Add, Call, DConst, DStr, DataItem, Instr, Param, Ret, Type, constant, global, temporary }
+import qbe.low { Add, Call, DataItem, Instr, Param, Ret, Type, constant, global, temporary, dconst, dstr }
 import qbe.high { DataDef, DataDefItem, Function, Linkage, Module }
 
 fn generate_add_func(mut le_module Module) {
@@ -37,8 +37,8 @@ fn generate_main_func(mut le_module Module) {
 
 fn generate_data(mut le_module Module) {
 	items := [
-		DataDefItem{Type.byte, DataItem(DStr{'One and one make %d!\\n'})},
-		DataDefItem{Type.byte, DataItem(DConst{0})},
+		DataDefItem{Type.byte, dstr(string: 'One and one make %d!\\n')},
+		DataDefItem{Type.byte, dconst(val: 0)},
 	]
 	data := DataDef{Linkage.private(), 'fmt', none, items}
 	le_module.add_data(data)

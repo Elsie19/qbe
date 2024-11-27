@@ -12,6 +12,7 @@ pub fn (d DataItem) str() string {
 }
 
 // Symbol.
+@[param]
 pub struct DSymbol {
 pub:
 	// Name of symbol
@@ -29,6 +30,7 @@ pub fn (d DSymbol) str() string {
 }
 
 // String
+@[param]
 pub struct DStr {
 pub:
 	// String
@@ -40,6 +42,7 @@ pub fn (d DStr) str() string {
 }
 
 // Const
+@[param]
 pub struct DConst {
 pub:
 	// Value
@@ -48,4 +51,26 @@ pub:
 
 pub fn (d DConst) str() string {
 	return '${d.val}'
+}
+
+// `DataItem` wrapped generator for `DConst`.
+pub fn dconst(dc DConst) DataItem {
+	return DataItem(DConst {
+		val: dc.val
+	})
+}
+
+// `DataItem` wrapped generator for `DStr`.
+pub fn dstr(ds DStr) DataItem {
+	return DataItem(DStr {
+		string: ds.string
+	})
+}
+
+// `DataItem` wrapped generator for `DSymbol`.
+pub fn dsymbol(ds DSymbol) DataItem {
+	return DataItem(DSymbol {
+		name: ds.name
+		offset: ds.offset
+	})
 }
