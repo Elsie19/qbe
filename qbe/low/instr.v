@@ -55,8 +55,6 @@ pub:
 	from Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (a Add) str() string {
 	return 'add ${a.to}, ${a.from}'
 }
@@ -70,8 +68,6 @@ pub:
 	from Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (s Sub) str() string {
 	return 'sub ${s.to}, ${s.from}'
 }
@@ -85,8 +81,6 @@ pub:
 	from Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (m Mul) str() string {
 	return 'mul ${m.to}, ${m.from}'
 }
@@ -98,8 +92,6 @@ pub:
 	v Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (n Neg) str() string {
 	return 'neg ${n.v}'
 }
@@ -113,8 +105,6 @@ pub:
 	from Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (u Udiv) str() string {
 	return 'udiv ${u.to}, ${u.from}'
 }
@@ -128,8 +118,6 @@ pub:
 	from Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (d Div) str() string {
 	return 'div ${d.to}, ${d.from}'
 }
@@ -143,8 +131,6 @@ pub:
 	from Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (u Urem) str() string {
 	return 'urem ${u.to}, ${u.from}'
 }
@@ -158,8 +144,6 @@ pub:
 	from Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (r Rem) str() string {
 	return 'rem ${r.to}, ${r.from}'
 }
@@ -177,8 +161,6 @@ pub:
 	rhs Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (c Cmp) str() string {
 	return 'c${c.cmp}${c.type} ${c.lhs}, ${c.rhs}'
 }
@@ -192,8 +174,6 @@ pub:
 	y Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (a And) str() string {
 	return 'and ${a.x}, ${a.y}'
 }
@@ -207,8 +187,6 @@ pub:
 	y Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (o Or) str() string {
 	return 'or ${o.x}, ${o.y}'
 }
@@ -222,8 +200,6 @@ pub:
 	y Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (x Xor) str() string {
 	return 'xor ${x.x}, ${x.y}'
 }
@@ -237,8 +213,6 @@ pub:
 	y Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (s Sar) str() string {
 	return 'sar ${s.x}, ${s.y}'
 }
@@ -252,8 +226,6 @@ pub:
 	y Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (s Shr) str() string {
 	return 'shr ${s.x}, ${s.y}'
 }
@@ -267,8 +239,6 @@ pub:
 	y Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (s Shl) str() string {
 	return 'shl ${s.x}, ${s.y}'
 }
@@ -280,8 +250,6 @@ pub:
 	x Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (c Copy) str() string {
 	return 'copy ${c.x}'
 }
@@ -293,8 +261,6 @@ pub:
 	x ?Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (r Ret) str() string {
 	return if x := r.x {
 		'ret ${x}'
@@ -314,8 +280,6 @@ pub:
 	sl string
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (j Jnz) str() string {
 	return 'jnz ${j.v}, @${j.fl}, @${j.sl}'
 }
@@ -327,8 +291,6 @@ pub:
 	l string
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (j Jmp) str() string {
 	return 'jmp @${j.l}'
 }
@@ -342,8 +304,6 @@ pub:
 	v ?Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (p Param) str() string {
 	return if value := p.v {
 		'${p.t} ${value}'
@@ -362,8 +322,6 @@ pub:
 	a []Param
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (c Call) str() string {
 	return 'call \$${c.f}(${c.a.map(it.str()).join(', ')})'
 }
@@ -375,8 +333,6 @@ pub:
 	v Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (c Cast) str() string {
 	return 'cast ${c.v}'
 }
@@ -388,8 +344,6 @@ pub:
 	s u32
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (a Alloc4) str() string {
 	return 'alloc4 ${a.s}'
 }
@@ -401,8 +355,6 @@ pub:
 	s u64
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (a Alloc8) str() string {
 	return 'alloc8 ${a.s}'
 }
@@ -415,8 +367,6 @@ pub:
 	s u64
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (a Alloc16) str() string {
 	return 'alloc16 ${a.s}'
 }
@@ -432,8 +382,6 @@ pub:
 	v Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (s Store) str() string {
 	return 'store${s.t} ${s.d}, ${s.v}'
 }
@@ -447,8 +395,6 @@ pub:
 	s Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (l Load) str() string {
 	return 'load${l.t} ${l.s}'
 }
@@ -462,8 +408,6 @@ pub:
 	v Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (e Ext) str() string {
 	return 'ext${e.t} ${e.v}'
 }
@@ -477,8 +421,6 @@ pub:
 	v Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (t Trunc) str() string {
 	return 'trunc${t.t} ${t.v}'
 }
@@ -494,8 +436,6 @@ pub:
 	v Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (t To) str() string {
 	return '${t.from}to${t.to} ${t.v}'
 }
@@ -511,8 +451,6 @@ pub:
 	n u64
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (b Blit) str() string {
 	return 'blit ${b.s}, ${b.d}, ${b.n}'
 }
@@ -525,8 +463,6 @@ pub:
 	v Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (p PhiParam) str() string {
 	return '@${p.l} ${p.v}'
 }
@@ -538,8 +474,6 @@ pub:
 	inst []PhiParam
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (p Phi) str() string {
 	return 'phi ${p.inst.map(it.str()).join(', ')}'
 }
@@ -551,8 +485,6 @@ pub:
 	f string
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (d DbgFile) str() string {
 	return "dbgfile \"${d.f}\""
 }
@@ -566,8 +498,6 @@ pub:
 	c ?u64
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (d DbgLoc) str() string {
 	return if col := d.c {
 		'dbgloc ${d.l}, ${col}'
@@ -583,8 +513,6 @@ pub:
 	p Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (v VaStart) str() string {
 	return 'vastart ${v.p}'
 }
@@ -596,8 +524,6 @@ pub:
 	p Value
 }
 
-// TODO: Remove when -skip-unused can handle $for
-@[markused]
 pub fn (v VaArg) str() string {
 	return 'vaarg ${v.p}'
 }
